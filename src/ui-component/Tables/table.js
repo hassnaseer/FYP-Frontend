@@ -8,12 +8,9 @@ import {
   TableRow,
   Paper,
   Button,
-  Box,
-  Typography
 } from '@mui/material';
 import DeleteModal from "../modal"
 import Pagination from 'ui-component/pagination/pagination';
-import SearchComponent from 'ui-component/input/search';
 
 const data = [
   { id: 1, name: 'John Doe', age: 1 },
@@ -35,16 +32,15 @@ const columns = [
   // Add more columns as needed
 ];
 
-const DataTable = () => {
+const DataTable = ({searchValue}) => {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [searchValue, setSearchValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   let filteredData;
 
   filteredData = data.filter((row) =>
-    row.name.toLowerCase().includes(searchValue.toLowerCase())
+    row.name.toLowerCase().includes(searchValue?.toLowerCase())
   );
 
   useEffect(() => {
@@ -61,11 +57,6 @@ const DataTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
 
-  const handleSearchChange = (event) => {
-    setSearchValue(event.target.value);
-    setPage(0);
-  };
-
   const handleDelete = () => {
     setIsModalOpen(false);
   };
@@ -80,17 +71,6 @@ const DataTable = () => {
 
   return (
     <div>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-        <Box>
-          <Typography variant="subtitle1">Roles</Typography>
-        </Box>
-        <Box>
-          <SearchComponent searchValue={searchValue} handleSearchChange={handleSearchChange} />
-          <Button variant="contained" color="primary" size="medium" onClick={openModal}>
-            Add Role
-          </Button>
-        </Box>
-      </Box>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

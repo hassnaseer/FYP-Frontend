@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
+import { logout } from 'Redux/Auth/action';
 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -39,6 +40,7 @@ import { IconLogout, IconSettings, IconUser } from '@tabler/icons-react';
 
 const ProfileSection = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
   const navigate = useNavigate();
   const [notification, setNotification] = useState(false);
@@ -49,7 +51,7 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log('Logout');
+    dispatch(logout())
   };
 
   const handleClose = (event) => {
@@ -215,16 +217,6 @@ const ProfileSection = () => {
                               <Grid container spacing={1} justifyContent="space-between">
                                 <Grid item>
                                   <Typography variant="body2">Social Profile</Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Chip
-                                    label="02"
-                                    size="small"
-                                    sx={{
-                                      bgcolor: theme.palette.warning.dark,
-                                      color: theme.palette.background.default
-                                    }}
-                                  />
                                 </Grid>
                               </Grid>
                             }

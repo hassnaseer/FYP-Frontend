@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
+import SearchComponent from 'ui-component/input/search';
 import {
     FormControl,
     FormGroup,
@@ -8,11 +9,13 @@ import {
     Button,
     Grid,
     Typography,
-    Container
+    Container,
+    Box,
 } from '@mui/material';
 import * as Yup from 'yup';
 
 const CreateRoleForm = () => {
+  const [searchValue, setSearchValue] = useState('');
     const initialValues = {
         name: '',
         role: [],
@@ -27,7 +30,10 @@ const CreateRoleForm = () => {
     const handleSubmit = (values) => {
         console.log(values);
     };
-
+    const handleSearchChange = (event) => {
+        setSearchValue(event.target.value);
+        setPage(0);
+      };
     // const Hotel = [
     //     { value: 'delete', label: 'Delete' },
     //     { value: 'create', label: 'Create' },
@@ -49,6 +55,17 @@ const CreateRoleForm = () => {
 
     return (
         <Container>
+             <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <Box>
+          <Typography variant="subtitle1">Roles</Typography>
+        </Box>
+        <Box>
+          <SearchComponent searchValue={searchValue} handleSearchChange={handleSearchChange} />
+          <Button variant="contained" color="primary" size="medium">
+            Add Role
+          </Button>
+        </Box>
+      </Box>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}

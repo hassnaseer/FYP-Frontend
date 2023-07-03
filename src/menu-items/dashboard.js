@@ -4,6 +4,7 @@ import { IconBuildingSkyscraper } from '@tabler/icons-react';
 import { IconCalendarEvent } from '@tabler/icons-react';
 import { IconUserCheck } from '@tabler/icons-react';
 import { IconUsersMinus } from '@tabler/icons-react';
+import AmenitiesIcon from 'ui-component/icons/DryCleaningIcon.svg';
 
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -51,6 +52,14 @@ const dashboard = {
       type: 'item',
       url: '/staff',
       icon: IconUsersMinus,
+      breadcrumbs: false
+    },
+    {
+      id: 'Amenities',
+      title: 'Amenities',
+      type: 'item',
+      url: '/amenities',
+      icon: AmenitiesIcon,
       breadcrumbs: false
     },
   ]

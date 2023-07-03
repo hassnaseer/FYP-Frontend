@@ -2,20 +2,20 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
+import {Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
 import Logo from 'ui-component/Logo';
-import AuthRegister from '../auth-forms/AuthRegister';
-// import AuthFooter from 'ui-component/cards/AuthFooter';
+import AuthFooter from 'ui-component/cards/AuthFooter';
+import ForgotPassword from '../auth-forms/forgot';
 
 // assets
 
-// ===============================|| AUTH3 - REGISTER ||=============================== //
+// ================================|| AUTH3 - LOGIN ||================================ //
 
-const Register = () => {
+const Login = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -36,26 +36,20 @@ const Register = () => {
                     <Grid container direction={matchDownSM ? 'column-reverse' : 'row'} alignItems="center" justifyContent="center">
                       <Grid item>
                         <Stack alignItems="center" justifyContent="center" spacing={1}>
-                          <Typography color={theme.palette.secondary.main} gutterBottom variant={matchDownSM ? 'h3' : 'h2'}>
-                            Sign up
-                          </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-                            Enter your credentials to continue
+                            Enter your Email to continue
                           </Typography>
                         </Stack>
                       </Grid>
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <AuthRegister />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Divider />
+                    <ForgotPassword />
                   </Grid>
                   <Grid item xs={12}>
                     <Grid item container direction="column" alignItems="center" xs={12}>
                       <Typography component={Link} to="/login" variant="subtitle1" sx={{ textDecoration: 'none' }}>
-                        Already have an account?
+                        Get Back To Login
                       </Typography>
                     </Grid>
                   </Grid>
@@ -64,12 +58,12 @@ const Register = () => {
             </Grid>
           </Grid>
         </Grid>
-        {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
           <AuthFooter />
-        </Grid> */}
+        </Grid>
       </Grid>
     </AuthWrapper1>
   );
 };
 
-export default Register;
+export default Login;

@@ -1,13 +1,30 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import {LOGIN} from "./const"
+import {LOGIN, SIGN_UP} from "./const"
 import config from "../../config";
 
 let Base_Url = config.BASE_URL_API;
 
-export const SignUpRequest = (payload) => async () => {
+export const SignUpRequest = (payload) => async (dispatch) => {
+  const { email, password, fname} = payload;
+        let url = `${Base_Url}auth/login-staff`;
+        let data = {
+          email: email,
+          password: password,
+          fullName:fname
+        };
+        let axiosConfig = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
     try{
-     console.log(payload)
+      let response = await axios.post(url, data, axiosConfig);
+      dispatch({
+          type: SIGN_UP,
+          payload: response.data,
+      });
+      toast.success(response.data.message);
     }
     catch(err){
         console.log(err)

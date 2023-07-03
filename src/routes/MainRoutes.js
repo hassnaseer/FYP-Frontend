@@ -11,14 +11,16 @@ import {ProtectedRoute} from './protectedRoute';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/Role/addRole')));
-const UtilsColor = Loadable(lazy(() => import('views/Role/addRole')));
+const UtilsTypography = Loadable(lazy(() => import('views/Role/listRole')));
+const Staff = Loadable(lazy(() => import('views/Staff/listStaff')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
 // sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+const Hotel = Loadable(lazy(() => import('views/Hotel/ListHotel')));
+const Amenities = Loadable(lazy(() => import('views/Amenities')));
+const ChangePassword = Loadable(lazy(() => import('views/pages/authentication/authentication3/changePassword')));
 
 import {isLogin} from "../Redux/Auth/action";
 
@@ -54,11 +56,29 @@ const MainRoutes = {
       ]
     },
     {
+      path: 'amenities',
+      children: [
+        {
+          path: '',
+          element:  <ProtectedRoute isAuthenticated={isLogin()}><Amenities /></ProtectedRoute>
+        }
+      ]
+    },
+    {
       path: 'staff',
       children: [
         {
           path: '',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><UtilsColor /></ProtectedRoute>
+          element: <ProtectedRoute isAuthenticated={isLogin()}><Staff /></ProtectedRoute>
+        }
+      ]
+    },
+    {
+      path: 'change-password',
+      children: [
+        {
+          path: '',
+          element: <ProtectedRoute isAuthenticated={isLogin()}><ChangePassword /></ProtectedRoute>
         }
       ]
     },
@@ -91,7 +111,7 @@ const MainRoutes = {
     },
     {
       path: 'hotels',
-      element: <ProtectedRoute isAuthenticated={isLogin()}><SamplePage /></ProtectedRoute>
+      element: <ProtectedRoute isAuthenticated={isLogin()}><Hotel /></ProtectedRoute>
     }
   ]
 };
