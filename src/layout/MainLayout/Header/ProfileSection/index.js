@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { logout } from 'Redux/Auth/action';
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 
 // material-ui
@@ -34,7 +34,7 @@ import Transitions from 'ui-component/extended/Transitions';
 import User1 from 'assets/images/users/user-round.svg';
 
 // assets
-import { IconLogout, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconLogout, IconSettings } from '@tabler/icons-react';
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -42,9 +42,9 @@ const ProfileSection = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [notification, setNotification] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  // const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
@@ -61,14 +61,14 @@ const ProfileSection = () => {
     setOpen(false);
   };
 
-  const handleListItemClick = (event, index, route = '') => {
-    setSelectedIndex(index);
-    handleClose(event);
+  // const handleListItemClick = (event, index, route = '') => {
+  //   setSelectedIndex(index);
+  //   handleClose(event);
 
-    if (route && route !== '') {
-      navigate(route);
-    }
-  };
+  //   if (route && route !== '') {
+  //     navigate(route);
+  //   }
+  // };
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -194,7 +194,7 @@ const ProfileSection = () => {
                           }
                         }}
                       >
-                        <ListItemButton
+                        {/* <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
                           selected={selectedIndex === 0}
                           onClick={(event) => handleListItemClick(event, 0, '/account-setting')}
@@ -221,10 +221,10 @@ const ProfileSection = () => {
                               </Grid>
                             }
                           />
-                        </ListItemButton>
+                        </ListItemButton> */}
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
-                          selected={selectedIndex === 4}
+                          // selected={selectedIndex === 4}
                           onClick={handleLogout}
                         >
                           <ListItemIcon>

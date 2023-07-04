@@ -51,8 +51,8 @@ const DataTable = ({ searchValue }) => {
   }, [searchValue])
 
 
-  const handleClickChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handleClickChangePage = (event) => {
+    setPage(event);
   };
   const handleClickChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));

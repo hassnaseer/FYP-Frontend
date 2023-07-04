@@ -15,6 +15,14 @@ const dashboard = {
   type: 'group',
   children: [
     {
+      id: 'default',
+      title: 'Dashboard',
+      type: 'item',
+      url: '/dashboard',
+      icon: IconDashboard,
+      breadcrumbs: false
+    },
+    {
       id: 'Hotels',
       title: 'Hotels',
       type: 'item',
@@ -28,14 +36,6 @@ const dashboard = {
       type: 'item',
       url: '/booking',
       icon: IconCalendarEvent,
-      breadcrumbs: false
-    },
-    {
-      id: 'default',
-      title: 'Dashboard',
-      type: 'item',
-      url: '/dashboard',
-      icon: IconDashboard,
       breadcrumbs: false
     },
     {
@@ -60,6 +60,14 @@ const dashboard = {
       type: 'item',
       url: '/amenities',
       icon: AmenitiesIcon,
+      breadcrumbs: false
+    },
+    {
+      id: 'setting',
+      title: 'Setting',
+      type: 'item',
+      url: '/account-setting',
+      icon: IconDashboard,
       breadcrumbs: false
     },
   ]
