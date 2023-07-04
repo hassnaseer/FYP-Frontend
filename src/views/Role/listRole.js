@@ -24,7 +24,7 @@ const ListRole = () => {
                 </Box>
                 <Box>
                     <SearchComponent searchValue={searchValue} handleSearchChange={handleSearchChange} />
-                    <Button variant="contained" color="primary" size="medium">
+                    <Button variant="contained" color="secondary" size="medium">
                         Add Role
                     </Button>
                 </Box>

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -7,10 +7,11 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
+  Box,
 } from '@mui/material';
 import DeleteModal from "../modal"
 import Pagination from 'ui-component/pagination/pagination';
+import { IconPencil, IconTrash } from '@tabler/icons-react';
 
 const data = [
   { id: 1, name: 'John Doe', age: 1 },
@@ -32,7 +33,7 @@ const columns = [
   // Add more columns as needed
 ];
 
-const DataTable = ({searchValue}) => {
+const DataTable = ({ searchValue }) => {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,11 +45,11 @@ const DataTable = ({searchValue}) => {
   );
 
   useEffect(() => {
-    filteredData = data.filter((row) =>
-    row.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
+    filteredData = data?.filter((row) =>
+      row.name.toLowerCase().includes(searchValue?.toLowerCase())
+    );
   }, [searchValue])
-  
+
 
   const handleClickChangePage = (event, newPage) => {
     setPage(newPage);
@@ -96,12 +97,12 @@ const DataTable = ({searchValue}) => {
                   <TableCell sx={{
                     textAlign: 'center' // Center align the text
                   }}>
-                    <Button variant="contained" color="primary">
-                      Button 1
-                    </Button>
-                    <Button variant="contained" color="secondary" onClick={openModal}>
-                      Button 2
-                    </Button>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                      <Box sx={{ mx: 2 }}>
+                        <IconTrash />
+                      </Box>
+                      <IconPencil onClick={openModal} />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}

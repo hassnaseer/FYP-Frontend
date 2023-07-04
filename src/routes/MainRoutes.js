@@ -15,7 +15,8 @@ const UtilsTypography = Loadable(lazy(() => import('views/Role/listRole')));
 const Staff = Loadable(lazy(() => import('views/Staff/listStaff')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
+const Profile = Loadable(lazy(() => import('views/Profile/profile')));
+const Setting = Loadable(lazy(() => import('views/Setting/setting')));
 
 // sample page routing
 const Hotel = Loadable(lazy(() => import('views/Hotel/ListHotel')));
@@ -92,11 +93,29 @@ const MainRoutes = {
       ]
     },
     {
-      path: 'icons',
+      path: 'booking',
       children: [
         {
-          path: 'tabler-icons',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><UtilsTablerIcons /></ProtectedRoute>
+          path: '',
+          element: <ProtectedRoute isAuthenticated={isLogin()}><UtilsMaterialIcons /></ProtectedRoute>
+        }
+      ]
+    },
+    {
+      path: 'profile',
+      children: [
+        {
+          path: '',
+          element: <ProtectedRoute isAuthenticated={isLogin()}><Profile /></ProtectedRoute>
+        }
+      ]
+    },
+    {
+      path: 'account-setting',
+      children: [
+        {
+          path: '',
+          element: <ProtectedRoute isAuthenticated={isLogin()}><Setting /></ProtectedRoute>
         }
       ]
     },
