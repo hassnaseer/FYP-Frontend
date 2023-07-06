@@ -5,12 +5,13 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import TabScrollButton from '@mui/material/TabScrollButton';
-import Profile from 'views/Profile/profile';
+import Profile from 'views/Profile/AuthProfile';
 import Loadable from 'ui-component/Loadable';
 
 const ChangePassword = Loadable(lazy(() => import('views/pages/authentication/authentication3/changePassword')));
-const LabTabs = ({ data, value, handleChange }) => {
 
+
+const LabTabs = ({ data, value, handleChange }) => {
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
@@ -32,7 +33,7 @@ const LabTabs = ({ data, value, handleChange }) => {
             <TabPanel value={item.value} key={item.id}>
              {item.label === 'Profile' && <Profile />}
              {item.label === 'Security' && <ChangePassword />}
-             {item.label !== 'Profile' && item.label}
+             {/* {item.label !== 'Profile' && item.label} */}
             </TabPanel>
           )
         })}

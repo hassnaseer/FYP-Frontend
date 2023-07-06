@@ -5,21 +5,22 @@ import config from "../../config";
 
 let Base_Url = config.BASE_URL_API;
 
-export const UpdateProfile = (payload) => async (dispatch) => {
-  const { email, password, fname} = payload;
+export const UpdateProfile = (payload, previewSource) => async (dispatch) => {
         let url = `${Base_Url}hotels/onboard-hotel`;
-        let data = {
-          email: email,
-          password: password,
-          fullName:fname
-        };
+        const formData = new FormData();
+        formData.append('hotel_name', payload.email);
+        formData.append('hotel_email', payload.email);
+        formData.append('hotel_phone', payload.phone);
+        formData.append('hotel_address', payload.rating);
+        formData.append('hotel_logo', previewSource);
+        formData.append('hotel_rating', payload.rating);
         let axiosConfig = {
           headers: {
             "Content-Type": "application/json",
           },
         };
     try{
-      let response = await axios.post(url, data, axiosConfig);
+      let response = await axios.post(url, formData, axiosConfig);
       dispatch({
           type: UPDATE_PROFILE,
           payload: response.data,

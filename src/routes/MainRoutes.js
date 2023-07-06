@@ -15,26 +15,33 @@ const UtilsTypography = Loadable(lazy(() => import('views/Role/listRole')));
 const Staff = Loadable(lazy(() => import('views/Staff/listStaff')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
-const Profile = Loadable(lazy(() => import('views/Profile/profile')));
 const Setting = Loadable(lazy(() => import('views/Setting/setting')));
 
 // sample page routing
 const Hotel = Loadable(lazy(() => import('views/Hotel/ListHotel')));
 const Amenities = Loadable(lazy(() => import('views/Amenities')));
-const ChangePassword = Loadable(lazy(() => import('views/pages/authentication/authentication3/changePassword')));
 
 import {isLogin} from "../Redux/Auth/action";
+import { Navigate } from 'react-router-dom';
+import MinimalLayout from 'layout/MinimalLayout';
+import ProfileAuth from 'views/Profile/profile';
+
+let Profile = true;
+
+const ProtectedRouteWithProfileCheck = ({ children }) => {
+  const isAuthenticated = isLogin();
+  const shouldRender = isAuthenticated && Profile;
+  return shouldRender ? children : <Navigate to="/profile" />;
+};
 
 // ==============================|| MAIN ROUTING ||============================== //
-
 const MainRoutes = {
   path: '/',
-  element: <MainLayout />,
+  element: Profile ? <MainLayout /> : <MinimalLayout />,
   children: [
     {
       path: '/',
-      element:  <ProtectedRoute 
-      isAuthenticated={isLogin()}
+      element:  <ProtectedRouteWithProfileCheck
       component={DashboardDefault}
       exact />
     },
@@ -43,7 +50,7 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element:<ProtectedRoute isAuthenticated={isLogin()}><DashboardDefault /></ProtectedRoute>
+          element:<ProtectedRouteWithProfileCheck><DashboardDefault /></ProtectedRouteWithProfileCheck>
         }
       ]
     },
@@ -52,7 +59,7 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element:  <ProtectedRoute isAuthenticated={isLogin()}><UtilsTypography /></ProtectedRoute>
+          element:  <ProtectedRouteWithProfileCheck><UtilsTypography /></ProtectedRouteWithProfileCheck>
         }
       ]
     },
@@ -61,7 +68,7 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element:  <ProtectedRoute isAuthenticated={isLogin()}><Amenities /></ProtectedRoute>
+          element:  <ProtectedRouteWithProfileCheck><Amenities /></ProtectedRouteWithProfileCheck>
         }
       ]
     },
@@ -70,16 +77,7 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><Staff /></ProtectedRoute>
-        }
-      ]
-    },
-    {
-      path: 'change-password',
-      children: [
-        {
-          path: '',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><ChangePassword /></ProtectedRoute>
+          element: <ProtectedRouteWithProfileCheck><Staff /></ProtectedRouteWithProfileCheck>
         }
       ]
     },
@@ -88,7 +86,7 @@ const MainRoutes = {
       children: [
         {
           path: 'util-shadow',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><UtilsShadow /></ProtectedRoute>
+          element: <ProtectedRouteWithProfileCheck><UtilsShadow /></ProtectedRouteWithProfileCheck>
         }
       ]
     },
@@ -97,7 +95,7 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><UtilsMaterialIcons /></ProtectedRoute>
+          element: <ProtectedRouteWithProfileCheck><UtilsMaterialIcons /></ProtectedRouteWithProfileCheck>
         }
       ]
     },
@@ -106,7 +104,7 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><Profile /></ProtectedRoute>
+          element: <ProtectedRoute isAuthenticated={isLogin()}><ProfileAuth /></ProtectedRoute>
         }
       ]
     },
@@ -115,22 +113,13 @@ const MainRoutes = {
       children: [
         {
           path: '',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><Setting /></ProtectedRoute>
-        }
-      ]
-    },
-    {
-      path: 'icons',
-      children: [
-        {
-          path: 'material-icons',
-          element: <ProtectedRoute isAuthenticated={isLogin()}><UtilsMaterialIcons /></ProtectedRoute>
+          element: <ProtectedRouteWithProfileCheck><Setting /></ProtectedRouteWithProfileCheck>
         }
       ]
     },
     {
       path: 'hotels',
-      element: <ProtectedRoute isAuthenticated={isLogin()}><Hotel /></ProtectedRoute>
+      element: <ProtectedRouteWithProfileCheck><Hotel /></ProtectedRouteWithProfileCheck>
     }
   ]
 };

@@ -5,7 +5,7 @@ const config = {
   defaultPath: '/dashboard',
   fontFamily: `'Roboto', sans-serif`,
   borderRadius: 12,
-  // export const BASE_URL_API = "http://localhost:8000/api/v1/" ,  //localurl
+  //BASE_URL_API = "http://localhost:8000/api/v1/" ,  //localurl
   BASE_URL_API :"https://pms-api.broadvisions.online/pms-user-service/v1/",  //liveURL
 };
 

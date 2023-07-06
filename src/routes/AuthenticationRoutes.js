@@ -7,6 +7,8 @@ import MinimalLayout from 'layout/MinimalLayout';
 //protected route
 import {PublicRoute} from './protectedRoute';
 import {isLogin} from "../Redux/Auth/action";
+// const Profile = Loadable(lazy(() => import('views/Profile/profile')));
+
 
 // login option 3 routing
 const AuthLogin3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Login3')));
@@ -47,6 +49,15 @@ const AuthenticationRoutes = {
         }
       ]
     },
+    // {
+    //   path: 'profile',
+    //   children: [
+    //     {
+    //       path: '',
+    //       element: <PublicRoute isAuthenticated={isLogin()} is_profile_completed={false}><Profile /></PublicRoute>
+    //     }
+    //   ]
+    // },
     {
       path: '/forgotpassword',
       children: [

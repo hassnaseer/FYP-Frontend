@@ -1,6 +1,5 @@
 import {useState } from 'react';
 import {useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Login } from 'Redux/Auth/action';
 
 // material-ui
@@ -8,16 +7,12 @@ import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Button,
-  Checkbox,
   FormControl,
-  FormControlLabel,
   FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  Stack,
-  Typography,
 } from '@mui/material';
 
 // third party
@@ -38,7 +33,6 @@ import { toast } from 'react-toastify';
 const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const [checked, setChecked] = useState(true);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showOldPassword, setShowoldPassword] = useState(false);
@@ -77,7 +71,7 @@ const FirebaseLogin = ({ ...others }) => {
           <form noValidate onSubmit={handleSubmit} {...others}>
          
             <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-password-login">New Password</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password-login">Old Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-login"
                 type={showPassword ? 'text' : 'password'}
@@ -98,7 +92,7 @@ const FirebaseLogin = ({ ...others }) => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
+                label="Old Password"
                 inputProps={{}}
               />
               {touched.password && errors.password && (
@@ -138,23 +132,6 @@ const FirebaseLogin = ({ ...others }) => {
                 </FormHelperText>
               )}
             </FormControl>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-              <FormControlLabel
-                control={
-                  <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                }
-                label="Remember me"
-              />
-              <Typography variant="subtitle1" component={Link} to="/forgotpassword" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-                Forgot Password?
-              </Typography>
-            </Stack>
-            {errors.submit && (
-              <Box sx={{ mt: 3 }}>
-                <FormHelperText error>{errors.submit}</FormHelperText>
-              </Box>
-            )}
-
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
