@@ -6,12 +6,11 @@ import config from "../../config";
 let Base_Url = config.BASE_URL_API;
 
 export const SignUpRequest = (payload) => async (dispatch) => {
-  const { email, password, fname } = payload;
-  let url = `${Base_Url}auth/login-staff`;
+  const { email, password } = payload;
+  let url = `${Base_Url}master-user/register`;
   let data = {
     email: email,
     password: password,
-    fullName: fname
   };
   let axiosConfig = {
     headers: {

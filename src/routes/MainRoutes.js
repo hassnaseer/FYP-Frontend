@@ -37,7 +37,7 @@ const ProtectedRouteWithProfileCheck = ({ children }) => {
 // ==============================|| MAIN ROUTING ||============================== //
 const MainRoutes = {
   path: '/',
-  element: Profile ? <MainLayout /> : <MinimalLayout />,
+  element: Profile && isLogin() ? <MainLayout /> : <MinimalLayout />,
   children: [
     {
       path: '/',

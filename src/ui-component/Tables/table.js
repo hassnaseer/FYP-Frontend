@@ -9,7 +9,7 @@ import {
   Paper,
   Box,
 } from '@mui/material';
-import DeleteModal from "../modal"
+import DeleteModal from "../modal/Modal"
 import Pagination from 'ui-component/pagination/pagination';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 
