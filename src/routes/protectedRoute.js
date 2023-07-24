@@ -10,6 +10,6 @@ export const PublicRoute = ({ isAuthenticated,children }) => {
   if (!isAuthenticated) {
     return children;
   }else{
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/forms" />;
   }
 };

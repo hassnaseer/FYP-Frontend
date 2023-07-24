@@ -10,18 +10,14 @@ import {
   Avatar,
   Box,
   Card,
-  CardContent,
   Chip,
   ClickAwayListener,
-  Divider,
-  Grid,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Paper,
   Popper,
-  Switch,
   Typography
 } from '@mui/material';
 
@@ -42,9 +38,6 @@ const ProfileSection = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
-  // const navigate = useNavigate();
-  const [notification, setNotification] = useState(false);
-  // const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
@@ -157,27 +150,7 @@ const ProfileSection = () => {
                           my: 2
                         }}
                       >
-                        <CardContent>
-                          <Grid container spacing={3} direction="column">
-                            <Grid item>
-                              <Grid item container alignItems="center" justifyContent="space-between">
-                                <Grid item>
-                                  <Typography variant="subtitle1">Allow Notifications</Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Switch
-                                    checked={notification}
-                                    onChange={(e) => setNotification(e.target.checked)}
-                                    name="sdm"
-                                    size="small"
-                                  />
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                          </Grid>
-                        </CardContent>
                       </Card>
-                      <Divider />
                       <List
                         component="nav"
                         sx={{

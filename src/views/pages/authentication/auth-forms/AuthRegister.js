@@ -15,9 +15,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  TextField,
   Typography,
-  useMediaQuery
 } from '@mui/material';
 
 // third party
@@ -41,7 +39,6 @@ import {useDispatch } from 'react-redux';
 
 const FirebaseRegister = ({ ...others }) => {
   const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
@@ -95,19 +92,23 @@ const FirebaseRegister = ({ ...others }) => {
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
-            <Grid container spacing={matchDownSM ? 0 : 2}>
-              <Grid item xs={12} md={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="First Name"
-                  margin="normal"
-                  name="fname"
-                  type="text"
-                  defaultValue=""
-                  sx={{ ...theme.typography.customInput }}
-                />
-              </Grid>
-            </Grid>
+            <FormControl fullWidth error={Boolean(touched.fullName && errors.fullName)} sx={{ ...theme.typography.customInput }}>
+              <InputLabel htmlFor="outlined-adornment-fullName-register">Full Name</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-fullName-register"
+                type="fullName"
+                value={values.fullName}
+                name="fullName"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                inputProps={{}}
+              />
+              {touched.fullName && errors.fullName && (
+                <FormHelperText error id="standard-weight-helper-text--register">
+                  {errors.fullName}
+                </FormHelperText>
+              )}
+            </FormControl>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
               <OutlinedInput

@@ -7,14 +7,14 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import AddAmenities from 'views/Amenities/addAmenities';
+// import AddAmenities from 'views/Amenities/addAmenities';
 
 const DeleteModal = ({ open, onClose, onConfirm, title, message }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText>{message === "Add Amenities" ? <AddAmenities /> : message}</DialogContentText>
+        <DialogContentText>{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
         {message !== "Add Amenities" ?

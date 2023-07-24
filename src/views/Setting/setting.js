@@ -6,8 +6,6 @@ const Setting=()=> {
     const [value, setValue] = React.useState('Profile');
     const data =[
         {id:1, value: "Profile", label:"Profile"},
-        {id:2, value: "Billing", label:"Billing"},
-        {id:3, value: "Security", label:"Security"}
       ]
       const handleChange = (event, newValue) => {
         setValue(newValue);

@@ -10,7 +10,6 @@ import {
   Box,
 } from '@mui/material';
 import DeleteModal from "../modal/Modal"
-import Pagination from 'ui-component/pagination/pagination';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 
 const data = [
@@ -34,8 +33,6 @@ const columns = [
 ];
 
 const DataTable = ({ searchValue }) => {
-  const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   let filteredData;
@@ -49,14 +46,6 @@ const DataTable = ({ searchValue }) => {
       row.name.toLowerCase().includes(searchValue?.toLowerCase())
     );
   }, [searchValue])
-
-
-  const handleClickChangePage = (event) => {
-    setPage(event);
-  };
-  const handleClickChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-  };
 
   const handleDelete = () => {
     setIsModalOpen(false);
@@ -109,7 +98,6 @@ const DataTable = ({ searchValue }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Pagination page={page} count={filteredData?.length} rowsPerPage={rowsPerPage} handleChangePage={handleClickChangePage} handleChangeRowsPerPage={handleClickChangeRowsPerPage} />
       <DeleteModal
         open={isModalOpen}
         onClose={closeModal}

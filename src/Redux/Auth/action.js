@@ -6,11 +6,12 @@ import config from "../../config";
 let Base_Url = config.BASE_URL_API;
 
 export const SignUpRequest = (payload) => async (dispatch) => {
-  const { email, password } = payload;
-  let url = `${Base_Url}master-user/register`;
+  const { email, password, fullName } = payload;
+  let url = `${Base_Url}auth/register`;
   let data = {
     email: email,
     password: password,
+    fullName:fullName
   };
   let axiosConfig = {
     headers: {
@@ -31,8 +32,13 @@ export const SignUpRequest = (payload) => async (dispatch) => {
 };
 
 export const Login = (payload) => async (dispatch) => {
+  localStorage.setItem("Token", "Token");
+  // toast.success(response.data.message);
+  setTimeout(() => {
+    window.location.href = "/forms";
+  }, 700)
   const { email, password } = payload;
-  let url = `${Base_Url}auth/login-staff`;
+  let url = `${Base_Url}auth/login`;
   let data = {
     email: email,
     password: password,
@@ -44,16 +50,15 @@ export const Login = (payload) => async (dispatch) => {
   };
   try {
     let response = await axios.post(url, data, axiosConfig);
-    let Token = response.data.token;
+    let Token = response.data.accessToken;
     dispatch({
       type: LOGIN,
       payload: response.data,
     });
     localStorage.setItem("Token", Token);
     toast.success(response.data.message);
-    //payload.setBtnState(false);
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/forms";
     }, 700)
   }
   catch (err) {

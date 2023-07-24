@@ -7,19 +7,12 @@ import Loadable from 'ui-component/Loadable';
 //protected route
 import {ProtectedRoute} from './protectedRoute';
 
-// dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
-
 // utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/Role/listRole')));
-const Staff = Loadable(lazy(() => import('views/Staff/listStaff')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 const Setting = Loadable(lazy(() => import('views/Setting/setting')));
 
 // sample page routing
-const Hotel = Loadable(lazy(() => import('views/Hotel/ListHotel')));
-const Amenities = Loadable(lazy(() => import('views/Amenities')));
+const Hotel = Loadable(lazy(() => import('views/Form/formBuilder')));
+// const Amenities = Loadable(lazy(() => import('views/Amenities')));
 
 import {isLogin} from "../Redux/Auth/action";
 import { Navigate } from 'react-router-dom';
@@ -40,66 +33,6 @@ const MainRoutes = {
   element: Profile && isLogin() ? <MainLayout /> : <MinimalLayout />,
   children: [
     {
-      path: '/',
-      element:  <ProtectedRouteWithProfileCheck
-      component={DashboardDefault}
-      exact />
-    },
-    {
-      path: 'dashboard',
-      children: [
-        {
-          path: '',
-          element:<ProtectedRouteWithProfileCheck><DashboardDefault /></ProtectedRouteWithProfileCheck>
-        }
-      ]
-    },
-    {
-      path: 'role',
-      children: [
-        {
-          path: '',
-          element:  <ProtectedRouteWithProfileCheck><UtilsTypography /></ProtectedRouteWithProfileCheck>
-        }
-      ]
-    },
-    {
-      path: 'amenities',
-      children: [
-        {
-          path: '',
-          element:  <ProtectedRouteWithProfileCheck><Amenities /></ProtectedRouteWithProfileCheck>
-        }
-      ]
-    },
-    {
-      path: 'staff',
-      children: [
-        {
-          path: '',
-          element: <ProtectedRouteWithProfileCheck><Staff /></ProtectedRouteWithProfileCheck>
-        }
-      ]
-    },
-    {
-      path: 'utils',
-      children: [
-        {
-          path: 'util-shadow',
-          element: <ProtectedRouteWithProfileCheck><UtilsShadow /></ProtectedRouteWithProfileCheck>
-        }
-      ]
-    },
-    {
-      path: 'booking',
-      children: [
-        {
-          path: '',
-          element: <ProtectedRouteWithProfileCheck><UtilsMaterialIcons /></ProtectedRouteWithProfileCheck>
-        }
-      ]
-    },
-    {
       path: 'profile',
       children: [
         {
@@ -118,7 +51,7 @@ const MainRoutes = {
       ]
     },
     {
-      path: 'hotels',
+      path: 'forms',
       element: <ProtectedRouteWithProfileCheck><Hotel /></ProtectedRouteWithProfileCheck>
     }
   ]
